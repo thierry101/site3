@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Simulation Devis (XOF) — EKD SARL</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="top-info-bar">
+      <div class="container top-info-inner">
+        <div class="top-info-group"><span><strong class="top-info-accent">Siège Social :</strong> M'Bengué (Korhogo, Côte d'Ivoire)</span><span>·</span><span class="font-mono"><strong class="top-info-accent">RCCM</strong> CI-KGO-2011-B-139</span></div>
+        <div class="top-info-group"><span>Greffe TPI N° 036/11</span><span>·</span><span>Capital 1.000.000 F CFA</span></div>
+      </div>
+    </div>
+    <header class="site-header">
+      <div class="container header-inner">
+        <a href="index.html" class="brand-link"><img src="images/logo_ekd_sarl.jpeg" alt="Logo EKD SARL" class="brand-logo" /><span class="brand-wordmark">EKD SARL</span></a>
+        <nav class="main-nav" aria-label="Navigation principale">
+          <a href="index.html" class="nav-link">Accueil</a><a href="a-propos.html" class="nav-link">À Propos</a><a href="expertises.html" class="nav-link">Expertises</a><a href="fiche-legale.html" class="nav-link">Fiche Légale</a><a href="contact.html" class="nav-link">Contact</a>
+        </nav>
+        <div class="header-actions">
+          <a href="simulation-devis.html" class="btn btn-primary header-cta">Simulation Devis</a>
+          <button type="button" class="mobile-menu-btn" aria-label="Ouvrir le menu" onclick="document.getElementById('mobileDrawer').classList.toggle('open')">☰</button>
+        </div>
+      </div>
+      <div id="mobileDrawer" class="mobile-drawer">
+        <div class="mobile-drawer-meta">M'Bengué (Korhogo, Côte d'Ivoire) · RCCM CI-KGO-2011-B-139</div>
+        <nav class="mobile-drawer-links" aria-label="Navigation mobile">
+          <a href="index.html">Accueil</a><a href="a-propos.html">À Propos</a><a href="expertises.html">Expertises</a><a href="fiche-legale.html">Fiche Légale</a><a href="contact.html">Contact</a>
+        </nav>
+        <a href="simulation-devis.html" class="btn btn-primary" style="width: 100%">Simulation Devis (XOF)</a>
+      </div>
+    </header>
+    <main>
+      <section class="page-banner">
+        <div class="container">
+          <nav class="breadcrumb" aria-label="Fil d'Ariane"><a href="index.html">Accueil</a><span>›</span><span class="breadcrumb-current">Simulation Devis</span></nav>
+          <p class="banner-kicker">Calculateur interactif en Francs CFA (XOF)</p>
+          <h1 class="banner-title">Simulateur de Quotation Budgétaire</h1>
+          <p class="banner-subtitle">Configurez votre domaine d’intervention et l’ampleur des travaux pour obtenir une estimation indicative immédiate en Francs CFA, puis transférez-la vers le formulaire de contact.</p>
+        </div>
+      </section>
+      <section class="section">
+        <div class="container">
+          <div class="grid-asymmetric" style="grid-template-columns: 1fr; gap: 2rem" id="simLayout">
+            <div style="display: flex; flex-direction: column; gap: 1.5rem">
+              <div class="card"><h2 class="card-title" style="margin-bottom: 1rem">1. Domaine d’intervention statutaire</h2><div class="domain-select-grid" id="domainButtons"></div></div>
+              <div class="card">
+                <div class="form-group"><label for="scopeSelect" class="form-label" style="font-weight: 700; color: var(--navy)">2. Nature de la prestation</label><select id="scopeSelect" class="form-control" onchange="recalculate()"></select></div>
+                <div class="form-group">
+                  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.4rem"><label for="qtyRange" class="form-label" style="margin-bottom: 0; font-weight: 700; color: var(--navy)">3. Volume estimé (<span id="unitLabelText"></span>)</label><span id="qtyDisplay" class="font-mono tabular-nums" style="font-weight: 700; color: var(--cobalt)"></span></div>
+                  <input id="qtyRange" type="range" style="width: 100%; accent-color: var(--amber)" oninput="recalculate()" />
+                </div>
+                <div class="grid-2" style="gap: 1rem">
+                  <div class="form-group" style="margin-bottom: 0"><label for="scaleSelect" class="form-label" style="font-weight: 700; color: var(--navy)">4. Ampleur du programme</label><select id="scaleSelect" class="form-control" onchange="recalculate()"><option value="0.85">Intervention Ciblée</option><option value="1.0" selected>Projet Standard</option><option value="1.25">Envergure Industrielle / Publique</option></select></div>
+                  <div class="form-group" style="margin-bottom: 0"><label for="zoneSelect" class="form-label" style="font-weight: 700; color: var(--navy)">5. Zone géographique</label><select id="zoneSelect" class="form-control" onchange="recalculate()"><option value="1.0">M'Bengué &amp; Département (Poro)</option><option value="1.06">Korhogo &amp; District des Savanes</option><option value="1.15">Autres régions (Côte d'Ivoire)</option></select></div>
+                </div>
+                <div class="form-group" style="margin-top: 1.25rem; margin-bottom: 0"><label for="urgencySelect" class="form-label" style="font-weight: 700; color: var(--navy)">6. Contrainte de délai</label><select id="urgencySelect" class="form-control" onchange="recalculate()"><option value="1.0">Délai standard (planifié)</option><option value="1.1">Déploiement prioritaire</option><option value="1.2">Mobilisation d’urgence (&lt; 10 jours)</option></select></div>
+              </div>
+            </div>
+            <aside class="quote-sticky-panel">
+              <div style="display: flex; justify-content: space-between; font-size: 0.75rem; padding-bottom: 1rem; border-bottom: 1px solid rgba(255,255,255,0.15)"><span style="color: #cbd5e1">Estimation budgétaire indicative</span><span class="font-mono" style="color: var(--amber-bright)">Devise : XOF</span></div>
+              <div style="padding: 1.5rem 0; border-bottom: 1px solid rgba(255,255,255,0.15)"><p style="font-size: 0.75rem; color: #94a3b8">Montant indicatif de référence</p><p id="refXofDisplay" class="font-display tabular-nums" style="font-size: 2rem; font-weight: 700; color: #fff; margin-top: 0.25rem"></p><p id="rangeXofDisplay" class="font-mono tabular-nums" style="font-size: 0.875rem; color: #cbd5e1; margin-top: 0.5rem"></p></div>
+              <div style="padding: 1.25rem 0; font-size: 0.8125rem; display: flex; flex-direction: column; gap: 0.6rem; border-bottom: 1px solid rgba(255,255,255,0.15)">
+                <div style="display: flex; justify-content: space-between"><span style="color: #94a3b8">Études &amp; ingénierie (12 %)</span><span id="breakStudies" class="font-mono tabular-nums"></span></div>
+                <div style="display: flex; justify-content: space-between"><span style="color: #94a3b8">Fournitures &amp; équipements (46 %)</span><span id="breakMaterials" class="font-mono tabular-nums"></span></div>
+                <div style="display: flex; justify-content: space-between"><span style="color: #94a3b8">Exécution chantier (30 %)</span><span id="breakExecution" class="font-mono tabular-nums"></span></div>
+                <div style="display: flex; justify-content: space-between"><span style="color: #94a3b8">Logistique &amp; mobilisation (12 %)</span><span id="breakLogistics" class="font-mono tabular-nums"></span></div>
+              </div>
+              <div style="padding-top: 1.25rem"><button type="button" onclick="transferToContact()" class="btn btn-primary" style="width: 100%">Transférer vers le formulaire de contact →</button></div>
+            </aside>
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer class="site-footer"><div class="container"><div class="footer-bottom" style="padding-top: 0"><p>© 2026 ENTREPRISE KONE DAOUDA (EKD SARL) · M'Bengué (Korhogo, Côte d'Ivoire)</p><p class="font-mono">RCCM CI-KGO-2011-B-139 · Greffe TPI N° 036/11</p></div></div></footer>
+    <script>
+      if (window.innerWidth >= 1024) document.getElementById('simLayout').style.gridTemplateColumns = '7fr 5fr';
+      window.addEventListener('resize', function () { document.getElementById('simLayout').style.gridTemplateColumns = window.innerWidth >= 1024 ? '7fr 5fr' : '1fr'; });
+      var DOMAINS = [
+        { id: 'travaux-publics', num: '01', title: 'Travaux Publics', unit: 'km linéaire', min: 1, max: 25, step: 1, def: 3, rate: 18500000, mob: 4500000, scopes: [{ label: 'Reprofilage piste rurale', m: 0.75 }, { label: 'Voirie urbaine & VRD', m: 1.0 }, { label: 'Dalots & ouvrages d’art', m: 1.35 }] },
+        { id: 'batiments', num: '02', title: 'Bâtiments', unit: 'm² de surface', min: 60, max: 2500, step: 20, def: 240, rate: 265000, mob: 2800000, scopes: [{ label: 'Réhabilitation & finition', m: 0.65 }, { label: 'Bâtiment administratif / public', m: 1.0 }, { label: 'Entrepôt / bâtiment technique', m: 1.25 }] },
+        { id: 'forage-hydraulique', num: '03', title: 'Forage & Hydraulique', unit: 'forage / station', min: 1, max: 15, step: 1, def: 2, rate: 9800000, mob: 1800000, scopes: [{ label: 'Forage pompe manuelle', m: 0.72 }, { label: 'Forage + pompage solaire', m: 1.0 }, { label: 'Mini-réseau HVA complet', m: 1.55 }] },
+        { id: 'exploitation-miniere', num: '04', title: 'Exploitation Minière', unit: 'hectare', min: 1, max: 30, step: 1, def: 4, rate: 12500000, mob: 5500000, scopes: [{ label: 'Plateformes & pistes d’accès', m: 0.85 }, { label: 'Terrassement lourd de sols', m: 1.0 }, { label: 'Appui logistique continu', m: 1.4 }] },
+        { id: 'electricite-industrielle', num: '05', title: 'Électricité Industrielle', unit: 'kVA', min: 50, max: 1250, step: 50, def: 250, rate: 95000, mob: 2200000, scopes: [{ label: 'Armoires TGBT & Basse Tension', m: 0.7 }, { label: 'Poste de transformation HTA/BT', m: 1.0 }, { label: 'Électrification site industriel', m: 1.35 }] },
+        { id: 'mecanique-industrielle', num: '06', title: 'Mécanique Industrielle', unit: 'équipement / mois', min: 1, max: 20, step: 1, def: 3, rate: 1850000, mob: 650000, scopes: [{ label: 'Groupes électrogènes / motopompes', m: 0.8 }, { label: 'Réparation engins lourds', m: 1.0 }, { label: 'Contrat maintenance annuel', m: 1.45 }] },
+        { id: 'equipement-bureautique', num: '07', title: 'Équipement Bureautique', unit: 'poste complet', min: 5, max: 150, step: 5, def: 20, rate: 780000, mob: 450000, scopes: [{ label: 'Matériel informatique & onduleurs', m: 0.85 }, { label: 'Pack Informatique + Mobilier', m: 1.0 }, { label: 'Aménagement direction complet', m: 1.3 }] },
+        { id: 'commerce-import-export', num: '08', title: 'Commerce Import-Export', unit: 'lot / tonne', min: 5, max: 200, step: 5, def: 25, rate: 420000, mob: 850000, scopes: [{ label: 'Fournitures industrielles & EPI', m: 0.75 }, { label: 'Approvisionnement matériaux BTP', m: 1.0 }, { label: 'Sourcing import-export sur mesure', m: 1.35 }] }
+      ];
+      var urlParams = new URLSearchParams(window.location.search);
+      var paramId = urlParams.get('domaine');
+      var activeDomain = DOMAINS.find(function (d) { return d.id === paramId; }) || DOMAINS[0];
+      var lastSummary = null;
+      function formatXof(val) { return new Intl.NumberFormat('fr-FR').format(Math.round(val / 50000) * 50000) + ' F CFA'; }
+      function renderDomainButtons() {
+        var wrap = document.getElementById('domainButtons'); wrap.innerHTML = '';
+        DOMAINS.forEach(function (d) {
+          var btn = document.createElement('button'); btn.type = 'button';
+          btn.className = 'domain-option-btn' + (d.id === activeDomain.id ? ' selected' : '');
+          btn.innerHTML = '<div class="font-mono" style="font-size:0.75rem;font-weight:700;color:var(--amber-bright)">' + d.num + '</div><div style="font-weight:600;font-size:0.875rem;margin-top:0.2rem">' + d.title + '</div>';
+          btn.onclick = function () { activeDomain = d; renderDomainButtons(); initDomainInputs(); };
+          wrap.appendChild(btn);
+        });
+      }
+      function initDomainInputs() {
+        var scopeSelect = document.getElementById('scopeSelect'); scopeSelect.innerHTML = '';
+        activeDomain.scopes.forEach(function (s, idx) { var opt = document.createElement('option'); opt.value = s.m; opt.textContent = s.label; if (idx === 1) opt.selected = true; scopeSelect.appendChild(opt); });
+        var range = document.getElementById('qtyRange'); range.min = activeDomain.min; range.max = activeDomain.max; range.step = activeDomain.step; range.value = activeDomain.def;
+        document.getElementById('unitLabelText').textContent = activeDomain.unit; recalculate();
+      }
+      function recalculate() {
+        var qty = Number(document.getElementById('qtyRange').value), scopeMult = Number(document.getElementById('scopeSelect').value), scaleMult = Number(document.getElementById('scaleSelect').value), zoneMult = Number(document.getElementById('zoneSelect').value), urgencyMult = Number(document.getElementById('urgencySelect').value);
+        document.getElementById('qtyDisplay').textContent = qty + ' ' + activeDomain.unit;
+        var total = ((qty * activeDomain.rate * scopeMult * scaleMult) + activeDomain.mob) * zoneMult * urgencyMult, minXof = total * 0.88, maxXof = total * 1.15;
+        document.getElementById('refXofDisplay').textContent = formatXof(total);
+        document.getElementById('rangeXofDisplay').textContent = 'Fourchette : ' + formatXof(minXof) + ' — ' + formatXof(maxXof);
+        document.getElementById('breakStudies').textContent = formatXof(total * 0.12); document.getElementById('breakMaterials').textContent = formatXof(total * 0.46); document.getElementById('breakExecution').textContent = formatXof(total * 0.30); document.getElementById('breakLogistics').textContent = formatXof(total * 0.12);
+        var sSel = document.getElementById('scopeSelect'), zSel = document.getElementById('zoneSelect');
+        lastSummary = { domainId: activeDomain.id, domainNum: activeDomain.num, domainTitle: activeDomain.title, scopeLabel: sSel.options[sSel.selectedIndex].text, qty: qty, unit: activeDomain.unit, zoneLabel: zSel.options[zSel.selectedIndex].text, refText: formatXof(total), rangeText: formatXof(minXof) + ' à ' + formatXof(maxXof) };
+      }
+      function transferToContact() { if (lastSummary) localStorage.setItem('ekd_quote_transfer', JSON.stringify(lastSummary)); window.location.href = 'contact.html?from=sim'; }
+      renderDomainButtons(); initDomainInputs();
+    </script>
+      <script src="loader.js"></script>
+  </body>
+</html>
